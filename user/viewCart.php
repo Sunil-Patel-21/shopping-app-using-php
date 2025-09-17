@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,36 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Cart Page</title>
-       <?php include 'header.php'; ?>
+    <?php include 'header.php'; ?>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
         body {
-            background-color: #f8f9fa;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                url('https://images.unsplash.com/photo-1501785888041-2c0f3fa27939?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            animation: bgAnimation 60s linear infinite;
+        }
+
+        @keyframes bgAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .custom-heading {
             font-size: 2.5rem;
             font-weight: 600;
-            background-color: #f8f9fa;
-            /* same as bg-light */
+            background: rgba(248, 249, 250, 0.85);
             padding: 1rem;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             color: #ffc107;
-            /* same as text-warning */
             text-align: center;
             margin-bottom: 3rem;
+            animation: fadeInDown 1s ease forwards;
+            opacity: 0;
         }
 
-        h1.text-warning {
-            font-size: 2.5rem;
-            padding: 1rem;
+        @keyframes fadeInDown {
+            0% { transform: translateY(-30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
         .table {
-            background-color: #ffffff;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 0.5rem;
             overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
         thead.bg-danger {
@@ -58,6 +76,15 @@
         .btn-danger {
             padding: 0.3rem 0.75rem;
             font-size: 0.9rem;
+            transition: 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-warning:hover {
+            box-shadow: 0 0 10px rgba(255, 193, 7, 0.7);
+        }
+
+        .btn-danger:hover {
+            box-shadow: 0 0 10px rgba(220, 53, 69, 0.7);
         }
 
         .fw-bold h1 {
@@ -65,28 +92,18 @@
         }
 
         @media (max-width: 768px) {
-            .table {
-                font-size: 0.9rem;
-            }
-
-            .form-control {
-                max-width: 60px;
-            }
-
-            .btn-warning,
-            .btn-danger {
-                font-size: 0.8rem;
-            }
+            .table { font-size: 0.9rem; }
+            .form-control { max-width: 60px; }
+            .btn-warning, .btn-danger { font-size: 0.8rem; }
         }
     </style>
 </head>
 
 <body>
-
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="text-danger text-center  mb-5 p-3 rounded shadow-sm custom-heading">🛒 My Cart</h1>
+                <h1 class="text-center mb-5 p-3 rounded shadow-sm custom-heading">🛒 My Cart</h1>
             </div>
         </div>
     </div>
@@ -146,7 +163,6 @@
                             </tr>";
                             }
 
-                            // Total Row
                             echo "
                         <tr class='fw-bold'>
                             <td colspan='4'><h1>Total</h1></td>
@@ -165,9 +181,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
 </body>
 

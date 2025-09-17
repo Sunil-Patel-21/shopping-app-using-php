@@ -2,7 +2,7 @@
 $Name = $_POST["name"];
 $Password = $_POST["password"];
 
-$con = mysqli_connect("localhost","root","","ecommerce");
+$con = mysqli_connect("localhost","root","","ecommerce",3307);
 $result = mysqli_query($con,"SELECT * FROM `tbluser` WHERE (UserName='$Name' OR Email='$Name') AND Password='$Password'");
 
 session_start();

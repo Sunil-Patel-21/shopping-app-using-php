@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost", "root", "", "ecommerce");
+$con = mysqli_connect("localhost", "root", "", "ecommerce",3307);
 
 $A_name = $_POST["username"];
 $A_password = $_POST["userpassword"];

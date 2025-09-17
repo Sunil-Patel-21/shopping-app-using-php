@@ -1,16 +1,12 @@
 <?php 
 
 if(isset($_POST['submit'])){
-    $con = mysqli_connect("localhost","root","","ecommerce");
+    $con = mysqli_connect("localhost","root","","ecommerce",3307);
 
     $Name = $_POST["name"];
     $Email = $_POST["email"];
     $Number = $_POST["number"];
     $Password = $_POST["password"];
-
-    
-
-
 
     $Dup_Email =mysqli_query($con,"SELECT * FROM `tbluser` WHERE Email='$Email'");
     $Dup_username =mysqli_query($con,"SELECT * FROM `tbluser` WHERE UserName='$Name'");

@@ -119,7 +119,7 @@
 
   <!-- Top Navbar -->
   <nav class="navbar d-flex justify-content-between align-items-center">
-    <a class="navbar-brand" href="#">🛒 ShoppingCart</a>
+    <a class="navbar-brand" href="index.php">🛒 Swift Cart</a>
 
     <div class="user-info">
       <a href="index.php" ><i class="fa-solid fa-house"></i> Home</a>
