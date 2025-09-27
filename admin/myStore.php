@@ -178,10 +178,10 @@ if (!isset($_SESSION['admin'])) {
       />
       
       <div class="card-body">
-        <h5 class="card-title fw-bold">Add Post</h5>
-        <p class="card-text">Create and manage new product posts for your shopping cart.</p>
+        <h5 class="card-title fw-bold">Add Product</h5>
+        <p class="card-text">Create and manage new product for your swift cart.</p>
         <a href="product/index.php" class="btn btn-custom">
-          <i class="fa-solid fa-plus"></i> Add Post
+          <i class="fa-solid fa-plus"></i> Add Product
         </a>
       </div>
     </div>
@@ -196,7 +196,7 @@ if (!isset($_SESSION['admin'])) {
       />
       <div class="card-body">
         <h5 class="card-title fw-bold">Users</h5>
-        <p class="card-text">View and manage registered users of your shopping cart.</p>
+        <p class="card-text">View and manage registered users of your swift cart.</p>
         <a href="user.php" class="btn btn-custom">
           <i class="fa-solid fa-users"></i> Manage Users
         </a>

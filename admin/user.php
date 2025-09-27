@@ -63,7 +63,8 @@
     /* Gray Table styling */
     table {
       width: 100%;
-      background: rgba(128, 128, 128, 0.2); /* Gray base */
+      background: rgba(128, 128, 128, 0.2);
+      /* Gray base */
       backdrop-filter: blur(6px);
       border-radius: 15px;
       overflow: hidden;
@@ -71,7 +72,8 @@
     }
 
     thead {
-      background: rgba(100, 100, 100, 0.4); /* Darker gray for header */
+      background: rgba(100, 100, 100, 0.4);
+      /* Darker gray for header */
       color: #fff;
     }
 
@@ -80,7 +82,8 @@
     }
 
     tr:hover {
-      background: rgba(150, 150, 150, 0.25); /* Lighter gray on hover */
+      background: rgba(150, 150, 150, 0.25);
+      /* Lighter gray on hover */
       transform: scale(1.01);
     }
 
@@ -184,8 +187,8 @@
       <tbody id="userTable">
         <?php
         $i = 0;
-        while ($row = mysqli_fetch_array($Record)) :
-        ?>
+        while ($row = mysqli_fetch_array($Record)):
+          ?>
           <tr>
             <td><?php echo ++$i ?></td>
             <td><?= htmlspecialchars($row['UserName']) ?></td>

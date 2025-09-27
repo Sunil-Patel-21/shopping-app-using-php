@@ -35,12 +35,12 @@
       top: -55px;
     }
 
- body {
-  font-family: 'Quicksand', sans-serif;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
-  animation: bgAnimation 60s linear infinite;
-}
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      animation: bgAnimation 60s linear infinite;
+    }
 
     @keyframes bgAnimation {
       0% {
@@ -84,8 +84,10 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
-      backdrop-filter: blur(5px); /* Frosted glass effect */
+      background: rgba(255, 255, 255, 0.95);
+      /* Slightly transparent white */
+      backdrop-filter: blur(5px);
+      /* Frosted glass effect */
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       overflow: hidden;
@@ -193,10 +195,14 @@
       <form method="get">
         <select name="category" id="category" onchange="this.form.submit()">
           <option value="">All</option>
-          <option value="Mobile" <?= (isset($_GET['category']) && $_GET['category'] == 'Mobile') ? 'selected' : '' ?>>Mobile</option>
-          <option value="Laptop" <?= (isset($_GET['category']) && $_GET['category'] == 'Laptop') ? 'selected' : '' ?>>Laptop</option>
-          <option value="Home" <?= (isset($_GET['category']) && $_GET['category'] == 'Home') ? 'selected' : '' ?>>Home</option>
-          <option value="Bag" <?= (isset($_GET['category']) && $_GET['category'] == 'Bag') ? 'selected' : '' ?>>Bag</option>
+          <option value="Mobile" <?= (isset($_GET['category']) && $_GET['category'] == 'Mobile') ? 'selected' : '' ?>>
+            Mobile</option>
+          <option value="Laptop" <?= (isset($_GET['category']) && $_GET['category'] == 'Laptop') ? 'selected' : '' ?>>
+            Laptop</option>
+          <option value="Home" <?= (isset($_GET['category']) && $_GET['category'] == 'Home') ? 'selected' : '' ?>>Home
+          </option>
+          <option value="Bag" <?= (isset($_GET['category']) && $_GET['category'] == 'Bag') ? 'selected' : '' ?>>Bag
+          </option>
         </select>
       </form>
     </div>
