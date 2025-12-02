@@ -6,15 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shopping Cart Admin</title>
 
-  <!-- bootstrap cdn  -->
+  <!-- Bootstrap CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-  <!-- awesome cdn  -->
+  <!-- Font Awesome CDN for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"/>
 
   <style>
+    /* Body styling with background image and dark overlay */
     body {
-      /* Updated background image with format parameters for reliability */
       background: url("https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80") no-repeat center center/cover;
       min-height: 100vh;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -22,7 +22,7 @@
       position: relative;
     }
 
-    /* dark overlay */
+    /* Dark overlay for better readability */
     body::before {
       content: "";
       position: absolute;
@@ -31,6 +31,7 @@
       z-index: 0;
     }
 
+    /* Navbar, dashboard and headings above overlay */
     .navbar,
     .dashboard,
     h2 {
@@ -38,6 +39,7 @@
       z-index: 1;
     }
 
+    /* Navbar shadow and slide-down animation */
     .navbar {
       box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
       animation: slideDown 0.8s ease-in-out;
@@ -48,6 +50,7 @@
       to   { transform: translateY(0); }
     }
 
+    /* Dashboard heading animation */
     h2 {
       margin-top: 30px;
       font-weight: bold;
@@ -56,9 +59,11 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; } to { opacity: 1; }
+      from { opacity: 0; } 
+      to { opacity: 1; }
     }
 
+    /* Dashboard cards layout using CSS Grid */
     .dashboard {
       margin-top: 50px;
       display: grid;
@@ -67,6 +72,7 @@
       padding: 20px;
     }
 
+    /* Card styling with translucent background, blur, and hover effect */
     .card {
       background: rgba(255,255,255,0.08);
       border: none;
@@ -81,6 +87,7 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     }
 
+    /* Card image styling */
     .card img {
       height: 160px;
       object-fit: cover;
@@ -88,7 +95,7 @@
       display:block;
     }
 
-    /* ===== Button Styling ===== */
+    /* Custom button styling */
     .btn-custom {
       background: linear-gradient(135deg, #e74c3c, #c0392b);
       color: white;
@@ -103,14 +110,14 @@
       z-index: 1;
     }
 
-    /* Button Glow + Hover */
+    /* Button hover and glow effect */
     .btn-custom:hover {
       background: linear-gradient(135deg, #ff6f61, #d63031);
       transform: translateY(-4px) scale(1.03);
       box-shadow: 0px 6px 18px rgba(255,99,71,0.5);
     }
 
-    /* Ripple Effect */
+    /* Ripple effect on click */
     .btn-custom::after {
       content: "";
       position: absolute;
@@ -130,27 +137,31 @@
       transition: 0s;
     }
 
+    /* Icon spacing in button */
     .btn-custom i { margin-right: 8px; }
   </style>
 </head>
 
-<!-- session -->
+<!-- PHP Session Check -->
 <?php
 session_start();
+// Redirect to login if admin session is not set
 if (!isset($_SESSION['admin'])) {
   header("location:form/login.php");
 }
 ?>
 
 <body>
-  <!-- navbar -->
+  <!-- Navbar -->
   <nav class="navbar navbar-dark bg-dark px-4">
     <div class="container-fluid text-white d-flex justify-content-between align-items-center">
+      <!-- Brand -->
       <a class="navbar-brand d-flex align-items-center gap-2">
         <i class="fa-solid fa-cart-shopping"></i>
         <span class="fs-5">Swift Cart</span>
       </a>
 
+      <!-- Admin info and links -->
       <div class="fw-bold">
         <i class="fa-solid fa-user-tie"></i>
         Hello, <?php echo $_SESSION['admin']; ?> |
@@ -161,14 +172,15 @@ if (!isset($_SESSION['admin'])) {
     </div>
   </nav>
 
-  <!-- dashboard heading -->
+  <!-- Dashboard heading -->
   <div>
     <h2 class="text-center">Dashboard</h2>
   </div>
 
-  <!-- dashboard cards -->
+  <!-- Dashboard cards -->
   <div class="dashboard container">
-    <!-- Add Post (updated Unsplash URL + fallback) -->
+
+    <!-- Add Product Card -->
     <div class="card text-center text-white">
       <img
         src="https://tse3.mm.bing.net/th/id/OIP.scDgqBLkwRgJaIpjrq4qXwHaD5?pid=Api&h=220&P=0"
@@ -176,7 +188,6 @@ if (!isset($_SESSION['admin'])) {
         loading="lazy"
         onerror="this.onerror=null;this.src='https://picsum.photos/800/460?random=21';"
       />
-      
       <div class="card-body">
         <h5 class="card-title fw-bold">Add Product</h5>
         <p class="card-text">Create and manage new product for your swift cart.</p>
@@ -186,13 +197,12 @@ if (!isset($_SESSION['admin'])) {
       </div>
     </div>
 
-    <!-- Users (updated Unsplash URL + fallback) -->
+    <!-- Users Card -->
     <div class="card text-center text-white">
       <img
         src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80"
         alt="Users"
         loading="lazy"
-       
       />
       <div class="card-body">
         <h5 class="card-title fw-bold">Users</h5>
@@ -202,9 +212,10 @@ if (!isset($_SESSION['admin'])) {
         </a>
       </div>
     </div>
+
   </div>
 
-  <!-- bootstrap js -->
+  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

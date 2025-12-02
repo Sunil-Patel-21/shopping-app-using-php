@@ -151,6 +151,14 @@ $data = mysqli_fetch_array($record);
                     <input type="hidden" name="id" value="<?php echo $data['id']; ?>" />
                     <button name="update" class="btn-update">Update</button>
                 </form>
+                  <!-- ✅ BACK BUTTON ADDED HERE -->
+                    <div class="text-center mt-4">
+                        <a href="index.php" class="btn btn-light px-4 py-2"
+                            style="border-radius:50px; font-weight:600;">
+                            ⬅ Back
+                        </a>
+                    </div>
+
             </div>
         </div>
     </div>

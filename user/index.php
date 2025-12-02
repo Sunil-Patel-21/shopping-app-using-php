@@ -6,11 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home Page</title>
 
+  <!-- Include Navbar/Header -->
   <?php include 'header.php'; ?>
 
   <style>
+    /* Google Font */
     @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
 
+    /* Theme Colors */
     :root {
       --primary: #007bff;
       --secondary: #ff4f81;
@@ -19,12 +22,14 @@
       --card-shadow: rgba(0, 0, 0, 0.1);
     }
 
+    /* Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Category Dropdown Position */
     form {
       position: relative;
     }
@@ -35,6 +40,7 @@
       top: -55px;
     }
 
+    /* Background with animation */
     body {
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
@@ -60,6 +66,7 @@
       margin-top: 80px;
     }
 
+    /* Page Heading Animation */
     h1 {
       text-align: center;
       font-size: 2.5rem;
@@ -83,11 +90,10 @@
       }
     }
 
+    /* Product Card Style */
     .card {
       background: rgba(255, 255, 255, 0.95);
-      /* Slightly transparent white */
-      backdrop-filter: blur(5px);
-      /* Frosted glass effect */
+      backdrop-filter: blur(5px); /* Frosted glass effect */
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       overflow: hidden;
@@ -113,6 +119,7 @@
       }
     }
 
+    /* Product Image */
     .product-img {
       height: 220px;
       object-fit: cover;
@@ -143,11 +150,10 @@
       border-radius: 8px;
       border: 1px solid #ccc;
       margin-top: 10px;
-      outline: none;
       background: #fff;
-      color: #333;
     }
 
+    /* Add to Cart Button */
     .btn-danger {
       background-color: var(--secondary);
       color: #fff;
@@ -161,9 +167,10 @@
     .btn-danger:hover {
       background-color: #e63c6f;
       transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255, 79, 129, 0.7), 0 0 25px rgba(255, 79, 129, 0.5);
+      box-shadow: 0 0 15px rgba(255, 79, 129, 0.7);
     }
 
+    /* Category Filter Styling */
     .category-filter {
       margin-bottom: 30px;
       text-align: center;
@@ -179,7 +186,6 @@
       font-size: 1rem;
       border: 1px solid #ccc;
       background: #fff;
-      color: #333;
       font-weight: 600;
     }
   </style>
@@ -188,31 +194,35 @@
 <body>
 
   <div class="container">
+    <!-- Heading -->
     <h1 class="text-white">🛍️ Explore Our Products</h1>
 
-    <!-- Category Filter -->
+    <!-- CATEGORY FILTER DROPDOWN -->
     <div class="category-filter">
-      <form method="get">
+      <form method="GET">
+        <!-- Dropdown auto submits on change -->
         <select name="category" id="category" onchange="this.form.submit()">
           <option value="">All</option>
-          <option value="Mobile" <?= (isset($_GET['category']) && $_GET['category'] == 'Mobile') ? 'selected' : '' ?>>
-            Mobile</option>
-          <option value="Laptop" <?= (isset($_GET['category']) && $_GET['category'] == 'Laptop') ? 'selected' : '' ?>>
-            Laptop</option>
-          <option value="Home" <?= (isset($_GET['category']) && $_GET['category'] == 'Home') ? 'selected' : '' ?>>Home
-          </option>
-          <option value="Bag" <?= (isset($_GET['category']) && $_GET['category'] == 'Bag') ? 'selected' : '' ?>>Bag
-          </option>
+
+          <!-- Maintain selected value after refresh -->
+          <option value="Mobile" <?= (isset($_GET['category']) && $_GET['category'] == 'Mobile') ? 'selected' : '' ?>>Mobile</option>
+          <option value="Laptop" <?= (isset($_GET['category']) && $_GET['category'] == 'Laptop') ? 'selected' : '' ?>>Laptop</option>
+          <option value="Home" <?= (isset($_GET['category']) && $_GET['category'] == 'Home') ? 'selected' : '' ?>>Home</option>
+          <option value="Bag" <?= (isset($_GET['category']) && $_GET['category'] == 'Bag') ? 'selected' : '' ?>>Bag</option>
         </select>
       </form>
     </div>
 
-    <!-- Product Grid -->
+    <!-- PRODUCT GRID -->
     <div class="row g-4">
+
       <?php
       include 'Config.php';
+
+      // Read the category filter
       $filter = isset($_GET['category']) ? $_GET['category'] : '';
 
+      // Fetch products + Apply filter if selected
       $sql = "SELECT * FROM tblproduct";
       if (!empty($filter)) {
         $sql .= " WHERE PCategory = '$filter'";
@@ -220,31 +230,49 @@
 
       $Result = mysqli_query($con, $sql);
 
-      $delay = 0; // For staggered animation
+      // Animation delay for staggered effect
+      $delay = 0;
+
+      // Loop through products
       while ($row = mysqli_fetch_array($Result)) {
+
         echo "
           <div class='col-sm-6 col-md-4 col-lg-3' style='animation-delay: {$delay}s'>
             <form action='Insertcart.php' method='post'>
+
+              <!-- Product Card -->
               <div class='card h-100'>
                 <img src='../admin/product/$row[PImage]' class='product-img' alt='$row[PName]'>
+
                 <div class='card-body text-center'>
                   <h5 class='card-title'>$row[PName]</h5>
                   <p class='card-text'>₹ $row[PPrice]</p>
+
+                  <!-- Hidden fields for cart -->
                   <input type='hidden' name='PName' value='$row[PName]' />
                   <input type='hidden' name='PPrice' value='$row[PPrice]' />
+
+                  <!-- Quantity input -->
                   <input type='number' name='PQuantity' min='1' max='20' placeholder='Quantity' required>
+
+                  <!-- Add to Cart Button -->
                   <input type='submit' name='addCart' class='btn btn-danger mt-3 w-75 mx-auto d-block' value='Add to Cart'>
                 </div>
               </div>
+
             </form>
           </div>";
-        $delay += 0.2; // stagger delay for each item
+
+        $delay += 0.2; // Increase delay for next product
       }
       ?>
+
     </div>
   </div>
 
+  <!-- Footer -->
   <?php include 'footer.php'; ?>
+
 </body>
 
 </html>

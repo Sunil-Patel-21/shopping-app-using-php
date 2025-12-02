@@ -9,8 +9,8 @@ if (!isset($_SESSION['last_order']) || count($_SESSION['last_order']) == 0) {
 $cart = $_SESSION['last_order'];
 $total = $_SESSION['last_order_total'];
 
-$customerName = "John Doe";
-$customerEmail = "john.doe@example.com";
+$customerName = "Patel Sunil";
+$customerEmail = "sunil@gmail.com.com";
 $orderDate = date("d-m-Y H:i:s");
 $orderNumber = rand(100000, 999999);
 ?>
@@ -176,10 +176,10 @@ body {
     <div class="invoice-header">
         <h1>Invoice #<?= $orderNumber; ?></h1>
         <div class="company-info">
-            <p><strong>MyShop</strong></p>
+            <p><strong>Swift Cart</strong></p>
             <p>123 Market Street</p>
-            <p>City, Country</p>
-            <p>support@myshop.com</p>
+            <p>Surat, Sachin</p>
+            <p>sunil123@gmail.com</p>
         </div>
     </div>
 

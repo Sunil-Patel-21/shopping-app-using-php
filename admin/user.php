@@ -6,14 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin -> Users</title>
 
-  <!-- Bootstrap CDN -->
+  <!-- Bootstrap CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Font Awesome CDN -->
+  <!-- Font Awesome CDN for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
 
   <style>
-    /* Background with dark overlay */
+    /* Body styling with background image and dark overlay */
     body {
       background: url("https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80") no-repeat center center/cover;
       min-height: 100vh;
@@ -22,6 +22,7 @@
       position: relative;
     }
 
+    /* Dark overlay on background */
     body::before {
       content: "";
       position: absolute;
@@ -30,11 +31,13 @@
       z-index: 0;
     }
 
+    /* Container positioning above overlay */
     .container {
       position: relative;
       z-index: 1;
     }
 
+    /* Page title styling and animation */
     h2.title {
       text-align: center;
       margin: 30px 0;
@@ -44,27 +47,21 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    /* Search box */
+    /* Search input styling */
     #searchInput {
       border-radius: 50px;
       padding: 10px 20px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
-    /* Gray Table styling */
+    /* Table styling with gray translucent background */
     table {
       width: 100%;
       background: rgba(128, 128, 128, 0.2);
-      /* Gray base */
       backdrop-filter: blur(6px);
       border-radius: 15px;
       overflow: hidden;
@@ -73,7 +70,6 @@
 
     thead {
       background: rgba(100, 100, 100, 0.4);
-      /* Darker gray for header */
       color: #fff;
     }
 
@@ -83,17 +79,15 @@
 
     tr:hover {
       background: rgba(150, 150, 150, 0.25);
-      /* Lighter gray on hover */
       transform: scale(1.01);
     }
 
-    th,
-    td {
+    th, td {
       vertical-align: middle !important;
       color: #fff;
     }
 
-    /* Delete button */
+    /* Delete button styling with hover and click effects */
     .btn-danger {
       background: linear-gradient(135deg, #e74c3c, #c0392b);
       border: none;
@@ -109,6 +103,7 @@
       background: linear-gradient(135deg, #ff6f61, #d63031);
     }
 
+    /* Ripple effect on click */
     .btn-danger::after {
       content: "";
       position: absolute;
@@ -128,7 +123,7 @@
       transition: 0s;
     }
 
-    /* Total Users card */
+    /* Total Users card styling */
     .card-total {
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
@@ -142,7 +137,7 @@
       transform: scale(1.05);
     }
 
-    /* Back button */
+    /* Back button styling */
     .btn-back {
       background: linear-gradient(135deg, #3498db, #2980b9);
       color: #fff;
@@ -162,18 +157,24 @@
 
 <body>
   <?php
+  // Connect to database
   $con = mysqli_connect("localhost", "root", "", "ecommerce", 3307);
+  // Fetch all users
   $Record = mysqli_query($con, "SELECT * FROM tbluser");
+  // Get total number of users
   $row_count = mysqli_num_rows($Record);
   ?>
 
   <div class="container my-4">
+    <!-- Page title -->
     <h2 class="title">Admin Panel - Users</h2>
 
+    <!-- Search box for live filtering -->
     <div class="mb-3 w-50 mx-auto">
       <input type="text" id="searchInput" class="form-control" placeholder="Search by name, email, or number...">
     </div>
 
+    <!-- Users table -->
     <table class="table table-bordered text-center">
       <thead>
         <tr>
@@ -187,14 +188,16 @@
       <tbody id="userTable">
         <?php
         $i = 0;
+        // Loop through all users and display in table
         while ($row = mysqli_fetch_array($Record)):
-          ?>
+        ?>
           <tr>
             <td><?php echo ++$i ?></td>
             <td><?= htmlspecialchars($row['UserName']) ?></td>
             <td><?= htmlspecialchars($row['Email']) ?></td>
             <td><?= htmlspecialchars($row['Number']) ?></td>
             <td>
+              <!-- Delete button linking to delete.php with user ID -->
               <a href='delete.php?ID=<?= $row["Id"] ?>' class='btn btn-danger btn-sm'>
                 <i class="fa fa-trash"></i> Delete
               </a>
@@ -204,6 +207,7 @@
       </tbody>
     </table>
 
+    <!-- Total users card -->
     <div class="d-flex justify-content-center mt-4">
       <div class="card-total text-center">
         <h4>Total Users</h4>
@@ -211,6 +215,7 @@
       </div>
     </div>
 
+    <!-- Back button to main store/admin page -->
     <div class="text-center mt-4">
       <a href="myStore.php" class="btn btn-back">
         <i class="fa fa-arrow-left"></i> Back
@@ -218,7 +223,7 @@
     </div>
   </div>
 
-  <!-- Live search -->
+  <!-- Live search functionality using JavaScript -->
   <script>
     const searchInput = document.getElementById('searchInput');
     const userTable = document.getElementById('userTable');
@@ -234,7 +239,7 @@
     });
   </script>
 
-  <!-- Bootstrap JS -->
+  <!-- Bootstrap JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
